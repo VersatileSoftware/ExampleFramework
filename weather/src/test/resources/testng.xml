@@ -1,0 +1,7 @@
+<suite name="BBC_WEATHER_SUITE">
+	<test name="weatherPages">	
+		<classes>
+			<class name="com.bbc.weather.regressionTests.BbcWeatherPageElementTests" />
+		</classes>
+	</test>
+</suite>	
