@@ -11,34 +11,35 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import com.bbc.weather.constants.StaticProperties;
 
 public class PageWaitsNActions {
-	
+
 	private WebDriver browser;
 
-	public PageWaitsNActions(WebDriver browser){
-		this.browser=browser;
+	public PageWaitsNActions(WebDriver browser) {
+		this.browser = browser;
 	}
-	
+
 	/*
 	 * 
 	 * EXPLICIT WAITS
-	 * 
 	 */
-	
+
 	public void waitForElementVisibility(WebElement webElement) {
-		new WebDriverWait(browser, StaticProperties.TEN_SECONDS, StaticProperties.ONE_HUNDRED_MILI)
-				.until(ExpectedConditions.visibilityOf(webElement));
+		new WebDriverWait(browser, StaticProperties.TEN_SECONDS,
+				StaticProperties.ONE_HUNDRED_MILI).until(ExpectedConditions
+				.visibilityOf(webElement));
 	}
 
 	public void waitForElementEnabled(WebElement webElement) {
-		new WebDriverWait(browser,  StaticProperties.TEN_SECONDS, StaticProperties.ONE_HUNDRED_MILI)
-				.until(ExpectedConditions.elementToBeClickable(webElement));
+		new WebDriverWait(browser, StaticProperties.TEN_SECONDS,
+				StaticProperties.ONE_HUNDRED_MILI).until(ExpectedConditions
+				.elementToBeClickable(webElement));
 	}
 
 	public void waitForElementDisappear(By locator) {
-		new WebDriverWait(browser,  StaticProperties.TEN_SECONDS, StaticProperties.ONE_HUNDRED_MILI).until(ExpectedConditions
+		new WebDriverWait(browser, StaticProperties.TEN_SECONDS,
+				StaticProperties.ONE_HUNDRED_MILI).until(ExpectedConditions
 				.invisibilityOfElementLocated(locator));
 	}
-		
 
 	/*
 	 * DROPDOWN ACTIONS
@@ -52,28 +53,29 @@ public class PageWaitsNActions {
 		Select select = new Select(dropDown);
 		select.selectByVisibleText(text);
 	}
-	
+
 	/*
 	 * 
 	 * Mouse over an element
 	 */
-	
+
 	public void moveMouseOver(WebElement webElement) {
 		waitForElementVisibility(webElement);
 		new Actions(browser).moveToElement(webElement).perform();
 	}
+
 	/*
 	 * Click on element
 	 */
-	
+
 	public void clickOnItem(WebElement webElement) {
 		waitForElementVisibility(webElement);
 		moveMouseOver(webElement);
 		webElement.click();
 	}
-	
+
 	public void setCheckBoxOrRadioButton(WebElement webElement) {
-			clickOnItem(webElement);
+		clickOnItem(webElement);
 	}
 
 	public void clearInputField(WebElement webElement) {
@@ -85,7 +87,7 @@ public class PageWaitsNActions {
 		clearInputField(webElement);
 		webElement.sendKeys(inputText);
 	}
-	
+
 	public String getElementText(WebElement webElement) {
 		waitForElementVisibility(webElement);
 		return webElement.getText();

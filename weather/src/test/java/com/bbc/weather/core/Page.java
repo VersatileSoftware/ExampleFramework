@@ -10,51 +10,28 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import com.bbc.weather.constants.StaticProperties;
 
-
 public class Page {
-	
-	public WebDriver browser;
+
 	public PageWaitsNActions pageActionsAndWaits;
-	
-	public Page() {
-		switch (StaticProperties.browserType) {
-		case "firefox":
-			newFirefoxBrowser();
-			break;
-		case "chrome":
-			newChromeBrowser();
-		default:
-			newFirefoxBrowser();
-			break;
-		}		
-		pageActionsAndWaits=new PageWaitsNActions(browser);
+	protected WebDriver driver;
+
+	public Page(WebDriver browser) {
+		pageActionsAndWaits = new PageWaitsNActions(browser);
+		driver = browser;
 		setBrowserStaticProperties();
 	}
-	
-	private void newFirefoxBrowser() {
-		browser=new FirefoxDriver();
+
+	private void setBrowserStaticProperties() {
+		driver.manage().window().maximize();
+		driver.manage().timeouts()
+				.pageLoadTimeout(StaticProperties.ONE_MINUTE, TimeUnit.SECONDS);
+		driver.manage().timeouts()
+				.implicitlyWait(StaticProperties.TEN_SECONDS, TimeUnit.SECONDS);
 	}
 
-	private void newChromeBrowser() {
-		// TODO
-		browser = new ChromeDriver();
-		
-	}
-	
-	private void setBrowserStaticProperties(){
-		browser.manage().window().maximize();
-		browser.manage().timeouts().pageLoadTimeout(StaticProperties.ONE_MINUTE, TimeUnit.SECONDS);
-		browser.manage().timeouts().implicitlyWait(StaticProperties.TEN_SECONDS, TimeUnit.SECONDS);
-	}
-	
 	/*
-	 * Look for an element after a wait
-	 * Element present
-	 * Element displayed
-	 * 
-	 * 
-	 * 
-	 */	
+	 * Look for an element after a wait Element present Element displayed
+	 */
 	public boolean isElementPresent(WebElement webElement) {
 		try {
 			webElement.getText();
@@ -63,16 +40,16 @@ public class Page {
 			return false;
 		}
 	}
-	
+
 	public boolean isElementPresent(By elementLocator) {
 		try {
-			browser.findElement(elementLocator);
+			driver.findElement(elementLocator);
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
 	}
-	
+
 	public boolean isElementVisible(WebElement webElement) {
 		if (isElementPresent(webElement)) {
 			return isDisplayed(webElement);
@@ -88,34 +65,29 @@ public class Page {
 	public boolean isEnabled(WebElement webElement) {
 		return webElement.isEnabled();
 	}
-	
+
 	public boolean isChecked(WebElement webElement) {
 		return webElement.isSelected();
 	}
-	
+
 	/*
 	 * NAVIGATION
-	 * 
 	 */
 
-	 public void clickOnItemAndNavigateToPage(WebElement webElement) {
-	        pageActionsAndWaits.clickOnItem(webElement);
-	 }
-	 
-	 public void navigateToPage(String pageUrl){
-		 browser.navigate().to(pageUrl); 
-	 }
-	 
-	 public void pageRefresh() {
-	        browser.navigate().refresh();
-	    }
+	public void clickOnItemAndNavigateToPage(WebElement webElement) {
+		pageActionsAndWaits.clickOnItem(webElement);
+	}
 
-	 public void tearDown() {
-			try {
-				browser.close();
-				browser.quit();
-			} catch (Exception e) {
-				// the browser had already closed or was not instantiated
-			}
-		}
+	public void navigateToPage(String pageUrl) {
+		driver.navigate().to(pageUrl);
+	}
+
+	public void pageRefresh() {
+		driver.navigate().refresh();
+	}
+
+	public void tearDown() {
+		driver.close();
+		driver.quit();
+	}
 }

@@ -1,6 +1,11 @@
 package com.bbc.weather.pageObjects;
 
-public class BbcWeatherPage extends BbcBasePageWithHeader{
-	
+import org.openqa.selenium.WebDriver;
+
+public class BbcWeatherPage extends BbcBasePageWithHeader {
+
+	public BbcWeatherPage(WebDriver driver) {
+		super(driver);
+	}
 
 }
