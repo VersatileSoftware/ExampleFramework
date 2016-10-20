@@ -12,7 +12,7 @@ public class BbcHeaderElements {
 	@FindBy(id = "orb-header")
 	public WebElement headerSetion;
 
-	@FindBy(id = "orb-nav-weather")
+	@FindBy(className = "orb-nav-weather")
 	public WebElement weatehrTextLink;
 
 	@FindBy(id = "orb-search-q")

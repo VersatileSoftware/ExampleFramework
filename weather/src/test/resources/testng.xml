@@ -1,7 +1,12 @@
 <suite name="BBC_WEATHER_SUITE">
+ <listeners>
+ 	<listener class-name="com.bbc.weather.util.listeners.MethodListener"></listener>
+ </listeners>
+ 
 	<test name="weatherPages">	
 		<classes>
 			<class name="com.bbc.weather.regressionTests.BbcWeatherPageElementTests" />
+			<class name="com.bbc.weather.regressionTests.BbcWeatherForcast"/>
 		</classes>
 	</test>
 </suite>	
