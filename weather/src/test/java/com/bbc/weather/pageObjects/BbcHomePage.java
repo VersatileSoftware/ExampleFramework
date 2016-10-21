@@ -6,7 +6,6 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 public class BbcHomePage extends BbcBasePageWithHeader {
-	
 
 	public BbcHomePage(WebDriver driver) {
 		super(driver);

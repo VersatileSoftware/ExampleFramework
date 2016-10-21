@@ -15,60 +15,68 @@ import org.testng.Reporter;
 import org.testng.internal.Utils;
 
 public class MethodListener implements ITestListener, IInvokedMethodListener {
-	
+
 	/*
 	 * Listeners to report and error collect on failures
 	 */
 
-    @Override
-    public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-        Reporter.log("Before invocation of " + method.getTestMethod().getMethodName() + "\n");
+	@Override
+	public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
+		Reporter.log("Before invocation of "
+				+ method.getTestMethod().getMethodName() + "\n");
 
-    }
+	}
 
-    /*
-     * After Invocation of the test the listener 
-     */
-    @Override
-    public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-        Reporter.log("AFTER invocation of " + method.getTestMethod().getMethodName() + "\n");
-        Reporter.setCurrentTestResult(testResult);
-        if (method.isTestMethod()) {
-            List<Throwable> verificationFailures = ErrorCollection.getVerificationFailures();
-            if (verificationFailures.size() != 0) {
-                testResult.setStatus(ITestResult.FAILURE);
-                if (testResult.getThrowable() != null) {
-                    verificationFailures.add(testResult.getThrowable());
-                }
-                int size = verificationFailures.size();
-                if (size == 1) {
-                    testResult.setThrowable(verificationFailures.get(0));
-                } else {
-                    StringBuffer failureMessage = new StringBuffer("Multiple failures (").append(size).append("):\n");
-                    for (int i = 0; i < size - 1; i++) {
-                        failureMessage.append("Failure ").append(i + 1).append(" of ").append(size).append(": ");
-                        Throwable t = verificationFailures.get(i);
-                        String fullStackTrace = Utils.stackTrace(t, true)[0];
-                        failureMessage.append(fullStackTrace).append("\n\n");
-                    }
-                    Throwable last = verificationFailures.get(size - 1);
-                    failureMessage.append("Failure ").append(size).append(" of ").append(size).append(":");
-                    failureMessage.append(last.toString());
+	/*
+	 * After Invocation of the test the listener
+	 */
+	@Override
+	public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
+		Reporter.log("AFTER invocation of "
+				+ method.getTestMethod().getMethodName() + "\n");
+		Reporter.setCurrentTestResult(testResult);
+		if (method.isTestMethod()) {
+			List<Throwable> verificationFailures = ErrorCollection
+					.getVerificationFailures();
+			if (verificationFailures.size() != 0) {
+				testResult.setStatus(ITestResult.FAILURE);
+				if (testResult.getThrowable() != null) {
+					verificationFailures.add(testResult.getThrowable());
+				}
+				int size = verificationFailures.size();
+				if (size == 1) {
+					testResult.setThrowable(verificationFailures.get(0));
+				} else {
+					StringBuffer failureMessage = new StringBuffer(
+							"Multiple failures (").append(size).append("):\n");
+					for (int i = 0; i < size - 1; i++) {
+						failureMessage.append("Failure ").append(i + 1)
+								.append(" of ").append(size).append(": ");
+						Throwable t = verificationFailures.get(i);
+						String fullStackTrace = Utils.stackTrace(t, true)[0];
+						failureMessage.append(fullStackTrace).append("\n\n");
+					}
+					Throwable last = verificationFailures.get(size - 1);
+					failureMessage.append("Failure ").append(size)
+							.append(" of ").append(size).append(":");
+					failureMessage.append(last.toString());
 
-                    Throwable merged = new Throwable(failureMessage.toString());
-                    merged.setStackTrace(last.getStackTrace());
+					Throwable merged = new Throwable(failureMessage.toString());
+					merged.setStackTrace(last.getStackTrace());
 
-                    testResult.setThrowable(merged);
-                }
-            }
-        }
+					testResult.setThrowable(merged);
+				}
+			}
+		}
 
-    }
+	}
 
 	@Override
 	public void onFinish(ITestContext arg0) {
-		Reporter.log("Completed executing test " + arg0.getName() +" "+arg0.getEndDate(), true);
-		
+		Reporter.log(
+				"Completed executing test " + arg0.getName() + " "
+						+ arg0.getEndDate(), true);
+
 	}
 
 	@Override
@@ -78,7 +86,8 @@ public class MethodListener implements ITestListener, IInvokedMethodListener {
 
 	@Override
 	public void onTestFailedButWithinSuccessPercentage(ITestResult arg0) {
-		Reporter.log("About to begin executing test " + arg0.getStartMillis() + " End with " +arg0.getEndMillis() , true);		
+		Reporter.log("About to begin executing test " + arg0.getStartMillis()
+				+ " End with " + arg0.getEndMillis(), true);
 	}
 
 	@Override
@@ -89,18 +98,18 @@ public class MethodListener implements ITestListener, IInvokedMethodListener {
 	@Override
 	public void onTestSkipped(ITestResult arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onTestStart(ITestResult arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void onTestSuccess(ITestResult arg0) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

@@ -20,31 +20,33 @@ public class BbcWeatherPageElementTests {
 	@BeforeClass
 	public void testSetUp() throws Throwable {
 		homePageLanding = new BbcHomePage(browser).navigateHomepage();
-		weatherLandingPage=homePageLanding.NavigateToWeatherPage();
+		weatherLandingPage = homePageLanding.NavigateToWeatherPage();
 	}
 
 	@Test(timeOut = StaticProperties.ONE_MINUTE)
 	public void verifyWeatherPageElements() {
 		Assert.assertFalse(true);
 	}
-	
+
 	@Test(timeOut = StaticProperties.ONE_MINUTE)
 	public void verifyPresentWeatherDisplaySection() {
-		
+
 	}
+
 	@Test(timeOut = StaticProperties.ONE_MINUTE)
 	public void verifyPresentWeatherDisplay5days() {
-		
+
 	}
+
 	@Test(timeOut = StaticProperties.ONE_MINUTE)
 	public void verifyAddLocation() {
-		
+
 	}
+
 	@Test(timeOut = StaticProperties.ONE_MINUTE)
 	public void verifyForecast() {
-		
+
 	}
-	
 
 	@AfterClass
 	public void close() {

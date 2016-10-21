@@ -18,7 +18,9 @@ public class AllSupportedBrowsers {
 	}
 
 	private static void newChromeBrowser() {
-		System.setProperty("webdriver.chrome.driver",System.getProperty("user.dir")+"/test-classes/chromeDriverExe/chromedriver.exe");
+		System.setProperty("webdriver.chrome.driver",
+				System.getProperty("user.dir")
+						+ "/test-classes/chromeDriverExe/chromedriver.exe");
 		baseDriver = new ChromeDriver();
 
 	}
@@ -34,8 +36,8 @@ public class AllSupportedBrowsers {
 			newFirefoxBrowser();
 			break;
 		}
-		driver=new EventFiringWebDriver(baseDriver);
-		ActivityCapture handle=new ActivityCapture();
+		driver = new EventFiringWebDriver(baseDriver);
+		ActivityCapture handle = new ActivityCapture();
 		driver.register(handle);
 		return driver;
 	}
