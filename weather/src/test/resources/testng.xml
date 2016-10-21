@@ -6,7 +6,7 @@
 	<test name="weatherPages">	
 		<classes>
 			<class name="com.bbc.weather.regressionTests.BbcWeatherPageElementTests" />
-<!--  			<class name="com.bbc.weather.regressionTests.BbcWeatherForcast"/> 
+			<class name="com.bbc.weather.regressionTests.BbcWeatherForcast"/> 
 		</classes>
 	</test>
 </suite>	
