@@ -14,6 +14,8 @@ import org.testng.ITestListener;
 import org.testng.Reporter;
 import org.testng.internal.Utils;
 
+import com.bbc.weather.constants.StaticProperties;
+
 public class MethodListener implements ITestListener, IInvokedMethodListener {
 
 	/*
@@ -22,7 +24,7 @@ public class MethodListener implements ITestListener, IInvokedMethodListener {
 
 	@Override
 	public void beforeInvocation(IInvokedMethod method, ITestResult testResult) {
-		Reporter.log("Before invocation of "
+		System.out.println("Before invocation of "
 				+ method.getTestMethod().getMethodName() + "\n");
 
 	}
@@ -32,7 +34,7 @@ public class MethodListener implements ITestListener, IInvokedMethodListener {
 	 */
 	@Override
 	public void afterInvocation(IInvokedMethod method, ITestResult testResult) {
-		Reporter.log("AFTER invocation of "
+		System.out.println("AFTER invocation of "
 				+ method.getTestMethod().getMethodName() + "\n");
 		Reporter.setCurrentTestResult(testResult);
 		if (method.isTestMethod()) {
@@ -74,7 +76,7 @@ public class MethodListener implements ITestListener, IInvokedMethodListener {
 	@Override
 	public void onFinish(ITestContext arg0) {
 		Reporter.log(
-				"Completed executing test " + arg0.getName() + " "
+				"Completed executing test " + arg0.getName()
 						+ arg0.getEndDate(), true);
 
 	}

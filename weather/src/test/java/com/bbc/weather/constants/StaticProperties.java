@@ -13,5 +13,8 @@ public class StaticProperties {
 	public static final long ONE_MINUTE = 60000;
 	public static final long ONE_AND_HALF_MINUTE = 90000;
 	public static final long TWO_MINUTES = 120000;
+	
+	// 
+	public static final boolean printConsole=true;
 
 }

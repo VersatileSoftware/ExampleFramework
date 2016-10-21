@@ -4,6 +4,9 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.events.WebDriverEventListener;
+import org.testng.Reporter;
+
+import com.bbc.weather.constants.StaticProperties;
 
 public class ActivityCapture implements WebDriverEventListener {
 
@@ -14,38 +17,28 @@ public class ActivityCapture implements WebDriverEventListener {
 
 	@Override
 	public void afterClickOn(WebElement arg0, WebDriver arg1) {
-
-		System.out.println("After click " + arg0.toString());
-
+		Reporter.log("After click " + arg0.toString(), StaticProperties.printConsole);
 	}
 
 	@Override
 	public void afterFindBy(By arg0, WebElement arg1, WebDriver arg2) {
-
-		System.out.println("After FindBy " + arg0.toString());
+		Reporter.log("After FindBy " + arg0.toString(),StaticProperties.printConsole);
 	}
 
 	@Override
 	public void afterNavigateBack(WebDriver arg0) {
-
-		System.out.println("After navigating back " + arg0.toString());
-
+		Reporter.log("After navigating back " + arg0.toString(),StaticProperties.printConsole);
 	}
 
 	@Override
 	public void afterNavigateForward(WebDriver arg0) {
-
-		System.out.println("After navigating forword " + arg0.toString());
-
+		Reporter.log("After navigating forword " + arg0.toString(),StaticProperties.printConsole);
 	}
 
 	@Override
 	public void afterNavigateTo(String arg0, WebDriver arg1) {
-
-		System.out.println("After navigating " + arg0.toString());
-
-		System.out.println("After navigating " + arg1.toString());
-
+		Reporter.log("After navigating " + arg0.toString(),StaticProperties.printConsole);
+		Reporter.log("After navigating " + arg1.toString(),StaticProperties.printConsole);
 	}
 
 	@Override
@@ -60,36 +53,28 @@ public class ActivityCapture implements WebDriverEventListener {
 
 	@Override
 	public void beforeClickOn(WebElement arg0, WebDriver arg1) {
-
-		System.out.println("before click " + arg0.toString());
-
+		Reporter.log("before click " + arg0.toString(),StaticProperties.printConsole);
 	}
 
 	@Override
 	public void beforeFindBy(By arg0, WebElement arg1, WebDriver arg2) {
-
-		System.out.println("before FindBY " + arg0.toString());
-
+		Reporter.log("before FindBY " + arg0.toString(),StaticProperties.printConsole);
 	}
 
 	@Override
 	public void beforeNavigateBack(WebDriver arg0) {
-
-		System.out.println("Before navigating back " + arg0.toString());
+		Reporter.log("Before navigating back " + arg0.toString(),StaticProperties.printConsole);
 	}
 
 	@Override
 	public void beforeNavigateForward(WebDriver arg0) {
-		System.out.println("Before navigating Forword " + arg0.toString());
-
+		Reporter.log("Before navigating Forword " + arg0.toString(),StaticProperties.printConsole);
 	}
 
 	@Override
 	public void beforeNavigateTo(String arg0, WebDriver arg1) {
-
-		System.out.println("Before navigating " + arg0.toString());
-		System.out.println("Before navigating " + arg1.toString());
-
+		Reporter.log("Before navigating " + arg0.toString(),StaticProperties.printConsole);
+		Reporter.log("Before navigating " + arg1.toString(),StaticProperties.printConsole);
 	}
 
 	@Override
@@ -99,9 +84,8 @@ public class ActivityCapture implements WebDriverEventListener {
 
 	@Override
 	public void onException(Throwable arg0, WebDriver arg1) {
-
-		System.out.println("Testcase done" + arg0.toString());
-		System.out.println("Testcase done" + arg1.toString());
+		Reporter.log("Testcase done" + arg0.toString(),StaticProperties.printConsole);
+		Reporter.log("Testcase done" + arg1.toString(),StaticProperties.printConsole);
 	}
 
 	@Override

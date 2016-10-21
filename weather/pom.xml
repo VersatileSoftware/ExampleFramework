@@ -54,7 +54,8 @@
         	<testResource>
             	<directory>src/test/resources</directory>
             		<includes>
-                		<include>*/*</include>
+                		<include>**/*</include>
+                		<include>**/*.xml</include>
             		</includes>
         	</testResource>
     	</testResources>
